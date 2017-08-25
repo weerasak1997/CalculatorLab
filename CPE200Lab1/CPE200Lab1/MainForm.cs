@@ -123,12 +123,21 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
+                    string secondOperand = lblDisplay.Text;
+                    double x = Convert.ToDouble(firstOperand);
+                    double y = Convert.ToDouble(secondOperand);
+                    lblDisplay.Text = percent(x, y).ToString();
+                    
                     // your code here
                     break;
             }
             isAllowBack = false;
         }
+        private double percent(double first, double second)
+        {
+            return (first * second/100);
 
+        }
         private void btnEqual_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")
