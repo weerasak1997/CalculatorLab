@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
+        private int way=0;
 
         private void resetAll()
         {
@@ -121,19 +122,21 @@ namespace CPE200Lab1
                 case "÷":
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
+                    if(way == 1) { }
+                    way = 1;
                     break;
                 case "%":
                     string secondOperand = lblDisplay.Text;
                     double x = Convert.ToDouble(firstOperand);
                     double y = Convert.ToDouble(secondOperand);
-                    lblDisplay.Text = percent(x, y).ToString();
+                    lblDisplay.Text = percentage(x, y).ToString();
                     
                     // your code here
                     break;
             }
             isAllowBack = false;
         }
-        private double percent(double first, double second)
+        private double percentage(double first, double second)
         {
             return (first * second/100);
 
