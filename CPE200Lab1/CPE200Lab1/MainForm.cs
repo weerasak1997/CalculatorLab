@@ -234,5 +234,10 @@ namespace CPE200Lab1
                 }
             }
         }
+
+        private void lblDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
