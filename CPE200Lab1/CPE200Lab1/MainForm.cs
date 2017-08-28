@@ -20,7 +20,9 @@ namespace CPE200Lab1
         private string firstOperand;
         private string operate;
         private int way = 0;
-        
+        private string memory;
+
+
 
         private void resetAll()
         {
@@ -78,9 +80,21 @@ namespace CPE200Lab1
                 return;
             }
             operate = ((Button)sender).Text;
+            if (operate == "%")
+            {
+                secondOperand = lblDisplay.Text;
+                lblDisplay.Text = engine.SystemOperater(operate, firstOperand, secondOperand);
+                way = 0;
+            }
+            if (operate == "CE")
+            {
+                lblDisplay.Text = " " ;
+            }
+            else
+            {
             string addOperate = operate;
             if (way == 1)
-            {
+                {
                     if (checkOperater != operate) operate = checkOperater;
                 
                 if (lblDisplay.Text is "Error")
@@ -117,27 +131,25 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     way = 1;
                     break;
-                case "%":
-                    secondOperand = lblDisplay.Text;
-                    double x = Convert.ToDouble(firstOperand);
-                    double y = Convert.ToDouble(secondOperand);
-                    lblDisplay.Text = engine.Percentage(x, y).ToString();
-                    break;
                 case "1/x": 
                     secondOperand = lblDisplay.Text;
-                    lblDisplay.Text = engine.SystemOperater(operate,secondOperand);
+                    lblDisplay.Text = engine.SystemOperater(operate,secondOperand," ");
                         break;
                 case "SR":
                     secondOperand = lblDisplay.Text;
-                    lblDisplay.Text = engine.SystemOperater(operate, secondOperand);
-
+                    lblDisplay.Text = engine.SystemOperater(operate, secondOperand, " ");
                         // your code here
                         break;
             }
             }
-            
-            isAllowBack = false;
+                if (operate == "%")
+                {
+                    way = 1;
+                }
+                isAllowBack = false;
         }
+            }
+            
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
@@ -212,6 +224,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             resetAll();
+            firstOperand = null;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -243,10 +256,45 @@ namespace CPE200Lab1
                 }
             }
         }
-
         private void lblDisplay_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void bntMR_click_Click(object sender, EventArgs e)
+        {
+            string sumMemory;
+            operate = ((Button)sender).Text;
+            switch (operate)
+            {
+                case "MR":
+                    if(memory != null)
+                    {
+                    lblDisplay.Text = memory;
+                    isAfterEqual = true;
+                    }
+                    break;
+                case "M-":
+                    sumMemory = lblDisplay.Text;
+                    memory = (Convert.ToDouble(memory) - Convert.ToDouble(sumMemory)).ToString();
+                    isAfterEqual = true;
+                    break;
+                case "M+":
+                    sumMemory = lblDisplay.Text;
+                    memory = (Convert.ToDouble(memory) + Convert.ToDouble(sumMemory)).ToString();
+                    isAfterEqual = true;
+                    break;
+                case "MS":
+                    memory = lblDisplay.Text;
+                    isAfterEqual = true;
+                    break;
+                case "MC":
+                    memory = "0";
+                    lblDisplay.Text = "0";
+                    sumMemory = string.Empty;
+                    isAfterEqual = true;
+                    break;
+            }
         }
     }
 }

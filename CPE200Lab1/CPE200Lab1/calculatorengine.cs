@@ -48,27 +48,24 @@ namespace CPE200Lab1
             }
             return "E";
         }
-        public string SystemOperater(string operate, string firstOperand)
+        public string SystemOperater(string operate, string firstOperand, string secondOperand)
         {
-            char[] sum = new char[8];
+            string rub = " ";
             switch (operate)
             {
+                case "%": result = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();break;
                 case "1/x": result = (1 / Convert.ToDouble(firstOperand)).ToString();break;
                 case "SR": result = (System.Math.Sqrt(Convert.ToDouble(firstOperand))).ToString(); break;
             }
-           string rub = result.Substring(0, 8);
-            return rub;
+            if(result.Length > 8)
+            {
+               return rub = result.Substring(0, 8);
+            }
+                return result;
+            
         }
         internal class engine
         {
         }
-
-        public double Percentage(double first, double second)
-        {
-            return (first * second / 100);
-
-        }
-        
-
     }
 }
