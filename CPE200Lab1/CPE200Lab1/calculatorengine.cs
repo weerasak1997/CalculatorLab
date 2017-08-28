@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
-
+        string result;
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -48,7 +48,17 @@ namespace CPE200Lab1
             }
             return "E";
         }
-
+        public string SystemOperater(string operate, string firstOperand)
+        {
+            char[] sum = new char[8];
+            switch (operate)
+            {
+                case "1/x": result = (1 / Convert.ToDouble(firstOperand)).ToString();break;
+                case "SR": result = (System.Math.Sqrt(Convert.ToDouble(firstOperand))).ToString(); break;
+            }
+           string rub = result.Substring(0, 8);
+            return rub;
+        }
         internal class engine
         {
         }
@@ -58,6 +68,7 @@ namespace CPE200Lab1
             return (first * second / 100);
 
         }
+        
 
     }
 }

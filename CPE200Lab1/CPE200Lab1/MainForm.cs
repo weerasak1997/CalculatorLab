@@ -68,6 +68,7 @@ namespace CPE200Lab1
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
+            string secondOperand;
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -87,7 +88,7 @@ namespace CPE200Lab1
                     return;
                 }
                 
-                string secondOperand = lblDisplay.Text;
+                secondOperand = lblDisplay.Text;
                 string result = engine.calculate(operate, firstOperand, secondOperand);
                 if (result is "E" || result.Length > 8)
                 {
@@ -117,13 +118,21 @@ namespace CPE200Lab1
                     way = 1;
                     break;
                 case "%":
-                    string secondOperand = lblDisplay.Text;
+                    secondOperand = lblDisplay.Text;
                     double x = Convert.ToDouble(firstOperand);
                     double y = Convert.ToDouble(secondOperand);
                     lblDisplay.Text = engine.Percentage(x, y).ToString();
-                    
-                    // your code here
                     break;
+                case "1/x": 
+                    secondOperand = lblDisplay.Text;
+                    lblDisplay.Text = engine.SystemOperater(operate,secondOperand);
+                        break;
+                case "SR":
+                    secondOperand = lblDisplay.Text;
+                    lblDisplay.Text = engine.SystemOperater(operate, secondOperand);
+
+                        // your code here
+                        break;
             }
             }
             
