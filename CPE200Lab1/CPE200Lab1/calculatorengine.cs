@@ -23,9 +23,9 @@ namespace CPE200Lab1
                     // Not allow devide be zero
                     if (secondOperand != "0")
                     {
-                        double result;
-                        string[] parts;
-                        int remainLength;
+                        double result = 0;
+                        string[] parts = null;
+                        int remainLength = 0;
 
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part

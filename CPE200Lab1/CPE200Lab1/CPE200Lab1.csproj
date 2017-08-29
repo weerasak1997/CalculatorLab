@@ -47,16 +47,19 @@
   <ItemGroup>
     <Compile Include="calculatorengine.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="E:\w\MainForm.cs">
       <SubType>Form</SubType>
+      <Link>MainForm.cs</Link>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="E:\w\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <Link>MainForm.Designer.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="E:\w\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <Link>MainForm.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

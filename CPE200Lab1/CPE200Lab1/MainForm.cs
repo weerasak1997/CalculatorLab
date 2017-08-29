@@ -19,9 +19,9 @@ namespace CPE200Lab1
         private string checkOperater;
         private string firstOperand;
         private string operate;
-        private int way = 0, check = 0;
+        private int way = 0, checkStrat = 0;
         private string memory;
-
+        private string addOperate;
 
 
         private void resetAll()
@@ -42,7 +42,9 @@ namespace CPE200Lab1
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            check = 1;
+            
+            checkOperater = operate;
+            checkStrat++;
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -67,6 +69,8 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += digit;
             isAfterOperater = false;
+            if (checkStrat == 0) firstOperand = lblDisplay.Text;
+             way = 1;
         }
 
         private void btnOperator_Click(object sender, EventArgs e)
@@ -89,78 +93,61 @@ namespace CPE200Lab1
             }
             if (operate == "CE")
             {
-                lblDisplay.Text = " " ;
+                lblDisplay.Text = " ";
+                way = 0;
             }
             else
             {
-            string addOperate = operate;
-                if (check != 1)
-                {
-                lblDisplay.Text = lblDisplay.Text;
-                } 
-                else
-                {
-                if (way == 1 )
-                {
-                    if (checkOperater != operate ) operate = checkOperater;
-                
-                if (lblDisplay.Text is "Error")
-                {
-                    return;
-                }
-                
-                secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand);
-                if (result is "E" || result.Length > 8)
-                {
-                    lblDisplay.Text = "Error";
-                }
-                else
-                {
-                    lblDisplay.Text = result;
-                    
-                }
-                isAfterEqual = true;
-                firstOperand = result;
-                checkOperater = addOperate;
-                check = 0;
+       
+                    if (way == 1 && checkStrat == 2)
+                    {
+                        if (lblDisplay.Text is "Error")
+                        {
+                            return;
+                        }
 
-            }
-            else
-            {
-            switch (operate)
-            {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                    firstOperand = lblDisplay.Text;
-                    checkOperater = operate;
+                        secondOperand = lblDisplay.Text;
+                        string result = engine.calculate(checkOperater, firstOperand, secondOperand);
+                        if (result is "E" || result.Length > 8)
+                        {
+                            lblDisplay.Text = "Error";
+                        }
+                        else
+                        {
+                            lblDisplay.Text = result;
+
+                        }
+                        isAfterEqual = true;
+                        firstOperand = result;
+                        checkStrat--;
+                    }
+                    else
+                    {
                     isAfterOperater = true;
-                    way = 1;
-                    check = 0;
-                    break;
-                case "1/x": 
-                    secondOperand = lblDisplay.Text;
-                    lblDisplay.Text = engine.SystemOperater(operate,secondOperand," ");
-                        break;
-                case "SR":
-                    secondOperand = lblDisplay.Text;
-                    lblDisplay.Text = engine.SystemOperater(operate, secondOperand, " ");
-                        // your code here
-                        break;
-            }
-            }
-                if (operate == "%")
-                {
-                    way = 1;
-                  
+                    
+                        switch (operate)
+                        {
+                            
+                            case "1/x":
+                                secondOperand = lblDisplay.Text;
+                                lblDisplay.Text = engine.SystemOperater(operate, secondOperand, " ");
+                                break;
+                            case "SR":
+                                secondOperand = lblDisplay.Text;
+                                lblDisplay.Text = engine.SystemOperater(operate, secondOperand, " ");
+                                // your code here
+                                break;
+                        }
+                    }
+                    if (operate == "%"||operate == "CE")
+                    {
+                        way = 1;
+
+                    }
+                    isAllowBack = false;
+
                 }
-                isAllowBack = false;
-                
-        }
-                }
-            
+
             }
             
 
