@@ -41,16 +41,12 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                     break;
-                case "%":
-                    return ((Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString());
-                    //your code here
-                    break;
             }
             return "E";
         }
         public string SystemOperater(string operate, string firstOperand, string secondOperand)
         {
-            string rub = " ";
+            string rub = null;
             switch (operate)
             {
                 case "%": result = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100).ToString();break;
