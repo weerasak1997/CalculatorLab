@@ -28,6 +28,7 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
+            for(int i = 0)
             if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
             {
                 return "E";
@@ -118,7 +119,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    //your code here
+                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand)/100.0)).ToString();
                     break;
             }
             return "E";

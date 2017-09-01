@@ -20,6 +20,7 @@ namespace CPE200Lab1
         private string operate;
         private double memory;
         private CalculatorEngine engine;
+        private string secondOperand;
 
         private void resetAll()
         {
@@ -89,6 +90,7 @@ namespace CPE200Lab1
             else
             {
                 lblDisplay.Text = result;
+                firstOperand = null;
             }
 
         }
@@ -114,6 +116,7 @@ namespace CPE200Lab1
                 else
                 {
                     lblDisplay.Text = result;
+                    
                 }
             }
             operate = ((Button)sender).Text;
@@ -127,7 +130,8 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+                    firstOperand = lblDisplay.Text;
+                    isAfterOperater = true;
                     break;
             }
             isAllowBack = false;
