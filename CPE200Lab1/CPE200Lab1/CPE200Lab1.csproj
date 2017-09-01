@@ -45,21 +45,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="calculatorengine.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="E:\w\MainForm.cs">
+    <Compile Include="CalculatorEngine.cs" />
+    <Compile Include="ExtendForm.cs">
       <SubType>Form</SubType>
-      <Link>MainForm.cs</Link>
     </Compile>
-    <Compile Include="E:\w\MainForm.Designer.cs">
+    <Compile Include="ExtendForm.Designer.cs">
+      <DependentUpon>ExtendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-      <Link>MainForm.Designer.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="E:\w\MainForm.resx">
+    <EmbeddedResource Include="ExtendForm.resx">
+      <DependentUpon>ExtendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-      <Link>MainForm.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
