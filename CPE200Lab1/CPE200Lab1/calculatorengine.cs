@@ -29,27 +29,71 @@ namespace CPE200Lab1
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
-            
-            int number = 0;
+            int element = 0;
+            Boolean number = false;
             num = parts[0];
+            for(int j = 0; j < parts.Length; j++)
+            {
+                if (parts[j] == "÷")
+                {
+                    num = calculate(parts[j], parts[j - 1], parts[j + 1], 4);
+                    parts[j - 1] = num;
+                    for (int k = j; k < parts.Length - 2; k++)
+                    {
+                        parts[k] = parts[k + 2];
+                    }
+                    j += 2;
+                    element++;
+                }
+                
+            }
+            for (int a = 1; a <= element; a++)
+            {
+                parts[parts.Length - (a + 1)] = "+";
+                parts[parts.Length - a] = "0";
+            }
+            element = 0;
+            for (int j = 0; j < parts.Length; j++)
+            {
+                if (parts[j] == "X")
+                {
+                    num = calculate(parts[j], parts[j-1], parts[j + 1], 4);
+                        parts[j-1] = num;
+                    for(int k =j;k<parts.Length-2; k++)
+                    {
+                        parts[k] = parts[k + 2];
+                    }
+                    j += 2;
+                    element++;
+                }
+            } 
+            for (int a = 1;a <= element; a++){
+                parts[parts.Length - (a+1)] = "+";
+                parts[parts.Length - a] = "0";
+            }
             for (int i = 0; i < parts.Length;i+=2)
             {
-            if(!(isNumber(num) && isOperator(parts[i+1]) && isNumber(parts[i+2])))
+            if(i< parts.Length-1)
+                {
+                if(!(isNumber(parts[i]) && isOperator(parts[i+1]) && isNumber(parts[i+2])))
                 {
                     return "E";
-                } else
+                }
+                    else
                 {
-                    if (number >= 1)
+                    if (number)
                     {
-                    num = calculate(num, parts[i], parts[i + 2], 4);
+                    num = calculate(parts[i+1],num , parts[i + 2], 4);
                     }
                     else
                     {
-                    num = calculate(parts[i+1], parts[i], parts[i+2], 4);
+                    num = calculate(parts[i+1],parts[i], parts[i+2], 4);
+                    number =true;
                     }
-                    number++;
-                }
+                }       
             }
+        }
+             
              return num;
 
         }
