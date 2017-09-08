@@ -25,77 +25,30 @@ namespace CPE200Lab1
             }
             return false;
         }
-        string num;
+
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            int element = 0;
-            Boolean number = false;
-            num = parts[0];
-            for(int j = 0; j < parts.Length; j++)
+            //Split input string to multiple parts by space
+            List<string> parts = str.Split(' ').ToList<string>();
+            string result;
+            //As long as we have more than one part
+            while(parts.Count > 1)
             {
-                if (parts[j] == "÷")
-                {
-                    num = calculate(parts[j], parts[j - 1], parts[j + 1], 4);
-                    parts[j - 1] = num;
-                    for (int k = j; k < parts.Length - 2; k++)
-                    {
-                        parts[k] = parts[k + 2];
-                    }
-                    j += 2;
-                    element++;
-                }
-                
-            }
-            for (int a = 1; a <= element; a++)
-            {
-                parts[parts.Length - (a + 1)] = "+";
-                parts[parts.Length - a] = "0";
-            }
-            element = 0;
-            for (int j = 0; j < parts.Length; j++)
-            {
-                if (parts[j] == "X")
-                {
-                    num = calculate(parts[j], parts[j-1], parts[j + 1], 4);
-                        parts[j-1] = num;
-                    for(int k =j;k<parts.Length-2; k++)
-                    {
-                        parts[k] = parts[k + 2];
-                    }
-                    j += 2;
-                    element++;
-                }
-            } 
-            for (int a = 1;a <= element; a++){
-                parts[parts.Length - (a+1)] = "+";
-                parts[parts.Length - a] = "0";
-            }
-            for (int i = 0; i < parts.Length;i+=2)
-            {
-            if(i< parts.Length-1)
-                {
-                if(!(isNumber(parts[i]) && isOperator(parts[i+1]) && isNumber(parts[i+2])))
+                //Check if the first three is ready for calcuation
+                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
                 {
                     return "E";
-                }
-                    else
+                } else
                 {
-                    if (number)
-                    {
-                    num = calculate(parts[i+1],num , parts[i + 2], 4);
-                    }
-                    else
-                    {
-                    num = calculate(parts[i+1],parts[i], parts[i+2], 4);
-                    number =true;
-                    }
-                }       
+                    //Calculate the first three
+                    result = calculate(parts[1], parts[0], parts[2], 4);
+                    //Remove the first three
+                    parts.RemoveRange(0, 3);
+                    // Put back the result
+                    parts.Insert(0, result);
+                }
             }
-        }
-             
-             return num;
-
+            return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -178,7 +131,7 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    return (Convert.ToDouble(firstOperand) * (Convert.ToDouble(secondOperand)/100.0)).ToString();
+                    //your code here
                     break;
             }
             return "E";
